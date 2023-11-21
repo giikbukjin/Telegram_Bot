@@ -3,7 +3,7 @@ import asyncio
 import pytz
 import datetime
 
-token = "6813558981:AAGEecosIF7E25qekSFF9CrmNb36LLiTRRE"
+token = "YOUR TOKEN"
 bot = telegram.Bot(token = token)
 public_chat_name = '@Giikbuk'
 chat_id = "-1001996914528"
