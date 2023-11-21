@@ -1,20 +1,26 @@
 import telegram
 import asyncio
-import schedule
-import time
+import pytz
+import datetime
 
-async def send_bot_message():
-    token = "6813558981:AAGEecosIF7E25qekSFF9CrmNb36LLiTRRE"
-    bot = telegram.Bot(token = token)
-    public_chat_name = '@GiikbukTest'
-    chat_id = "-1001996914528"
-    #chat_id = "6911063520"
-    #asyncio.run(bot.send_message(chat_id=chat_id, text="hello"))
-    now = time.localtime()
-    text = "current time = ", str(now)
+token = "6813558981:AAGEecosIF7E25qekSFF9CrmNb36LLiTRRE"
+bot = telegram.Bot(token = token)
+public_chat_name = '@Giikbuk'
+chat_id = "-1001996914528"
+#chat_id = "6911063520"
 
-    asyncio.run(bot.send_message(chat_id = public_chat_name, text = text))
+async def print_message():
+    now = datetime.datetime.now(pytz.timezone('Asia/Seoul'))
+    text = "30분마다 메세지 전송, 23:00 ~ 06:00 출력 금지"
 
-while True:
-    send_bot_message()
-    time.sleep(1)
+    if now.hour >= 23 or now.hour <= 6: # 23:00 ~ 06:00 메세지 출력 금지
+        return
+    await bot.sendMessage(chat_id, text)
+
+async def run():
+    while True:
+        await print_message()
+        await asyncio.sleep(1800) # 30분 단위로 메세지 전송
+
+if __name__ == "__main__":
+    asyncio.run(run())
