@@ -7,7 +7,6 @@ token = "YOUR TOKEN"
 bot = telegram.Bot(token = token)
 public_chat_name = '@Giikbuk'
 chat_id = "-1001996914528"
-#chat_id = "6911063520"
 
 async def print_message():
     now = datetime.datetime.now(pytz.timezone('Asia/Seoul'))
